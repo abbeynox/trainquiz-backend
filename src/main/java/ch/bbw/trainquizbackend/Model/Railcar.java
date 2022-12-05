@@ -1,6 +1,16 @@
 package ch.bbw.trainquizbackend.Model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.lang.annotation.Documented;
+
+@Document("railcars")
 public class Railcar {
+
+    @Id
+    private String id;
+
     private String commonName;
     private String model;
     private String category;
@@ -12,7 +22,8 @@ public class Railcar {
     private int maxSpeed;
     private String imageSource;
 
-    public Railcar(String commonName, String model, String category, boolean lowfloorentry, int constructed, String manufacturer, boolean inService, int capacity, int maxSpeed, String imageSource) {
+    public Railcar(String id, String commonName, String model, String category, boolean lowfloorentry, int constructed, String manufacturer, boolean inService, int capacity, int maxSpeed, String imageSource) {
+        this.id = id;
         this.commonName = commonName;
         this.model = model;
         this.category = category;
@@ -23,6 +34,14 @@ public class Railcar {
         this.capacity = capacity;
         this.maxSpeed = maxSpeed;
         this.imageSource = imageSource;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCommonName() {
@@ -103,22 +122,6 @@ public class Railcar {
 
     public void setImageSource(String imageSource) {
         this.imageSource = imageSource;
-    }
-
-    @Override
-    public String toString() {
-        return "Railcar{" +
-                "commonName='" + commonName + '\'' +
-                ", model='" + model + '\'' +
-                ", category='" + category + '\'' +
-                ", lowfloorentry=" + lowfloorentry +
-                ", constructed=" + constructed +
-                ", manufacturer='" + manufacturer + '\'' +
-                ", inService=" + inService +
-                ", capacity=" + capacity +
-                ", maxSpeed=" + maxSpeed +
-                ", imageSource='" + imageSource + '\'' +
-                '}';
     }
 }
 

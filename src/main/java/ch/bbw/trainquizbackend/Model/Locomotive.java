@@ -1,6 +1,14 @@
 package ch.bbw.trainquizbackend.Model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document("locomotives")
 public class Locomotive {
+
+    @Id
+    private String id;
+
     private String commonName;
     private String alternativeName;
     private int constructed;
@@ -11,8 +19,8 @@ public class Locomotive {
     private String imageSource;
     private String comments;
 
-
-    public Locomotive(String commonName, String alternativeName, int constructed, String manufacturer, boolean inService, int maxSpeed, int weight, String imageSource, String comments) {
+    public Locomotive(String id, String commonName, String alternativeName, int constructed, String manufacturer, boolean inService, int maxSpeed, int weight, String imageSource, String comments) {
+        this.id = id;
         this.commonName = commonName;
         this.alternativeName = alternativeName;
         this.constructed = constructed;
@@ -22,6 +30,14 @@ public class Locomotive {
         this.weight = weight;
         this.imageSource = imageSource;
         this.comments = comments;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCommonName() {
@@ -96,18 +112,5 @@ public class Locomotive {
         this.comments = comments;
     }
 
-    @Override
-    public String toString() {
-        return "Locomotive{" +
-                "commonName='" + commonName + '\'' +
-                ", alternativeName='" + alternativeName + '\'' +
-                ", constructed=" + constructed +
-                ", manufacturer='" + manufacturer + '\'' +
-                ", inService=" + inService +
-                ", maxSpeed=" + maxSpeed +
-                ", weight=" + weight +
-                ", imageSource='" + imageSource + '\'' +
-                ", comments='" + comments + '\'' +
-                '}';
-    }
+
 }
