@@ -4,9 +4,11 @@ package ch.bbw.trainquizbackend.Repository;
 import ch.bbw.trainquizbackend.Model.Locomotive;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface QuizRepository extends MongoRepository<Locomotive, String> {
 
     @Query("{commonName:'?0'}")

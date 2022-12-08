@@ -3,6 +3,8 @@ package ch.bbw.trainquizbackend.Model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
+
 @Document("results")
 public class Result {
 
@@ -10,13 +12,21 @@ public class Result {
     private String id;
 
     private String playerName;
-    private int points;
-    private int playingTime; // in seconds
+    private int points = 0; // count of correct responses (5 responses possible)
+    private Date startTime;
+    private Date finishedTime;
+    private int playingTime; // in seconds -> finishedTime - startTime
 
-    public Result(String id, String playerName, int points, int playingTime) {
+    public Result() {
+        super();
+    }
+
+    public Result(String id, String playerName, int points, Date startTime, Date finishedTime, int playingTime) {
         this.id = id;
         this.playerName = playerName;
         this.points = points;
+        this.startTime = startTime;
+        this.finishedTime = finishedTime;
         this.playingTime = playingTime;
     }
 
@@ -44,6 +54,22 @@ public class Result {
         this.points = points;
     }
 
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getFinishedTime() {
+        return finishedTime;
+    }
+
+    public void setFinishedTime(Date finishedTime) {
+        this.finishedTime = finishedTime;
+    }
+
     public int getPlayingTime() {
         return playingTime;
     }
@@ -58,6 +84,8 @@ public class Result {
                 "id='" + id + '\'' +
                 ", playerName='" + playerName + '\'' +
                 ", points=" + points +
+                ", startTime=" + startTime +
+                ", finishedTime=" + finishedTime +
                 ", playingTime=" + playingTime +
                 '}';
     }
