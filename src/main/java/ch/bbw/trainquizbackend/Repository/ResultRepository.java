@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ResultRepository extends MongoRepository<Result, Long> {
+    Result findResultById(String id);
 }

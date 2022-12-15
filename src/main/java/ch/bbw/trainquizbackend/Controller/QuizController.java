@@ -1,5 +1,7 @@
 package ch.bbw.trainquizbackend.Controller;
 
+import ch.bbw.trainquizbackend.Logic.QuizLogic;
+import ch.bbw.trainquizbackend.Model.QuestionList;
 import ch.bbw.trainquizbackend.Model.Result;
 import ch.bbw.trainquizbackend.Repository.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +20,21 @@ public class QuizController {
     @Autowired
     private QuizRepository quizRepository;
 
-    @PostMapping("/questions")
+    @Autowired
+    QuizLogic quizLogic;
+
+    @PostMapping("/questions") // hier ggf quiz art property einbauen
     // Um das Quiz zu starten, müssen wir den Spielernamen und die Startzeit mitschicken
-    public String quiz(@RequestParam String playerName, Date startTime) {
-        if(playerName.equals(null)) {
+    public String quiz(@RequestParam String playerName) {
+        if(playerName.equals("")) {
             throw new IllegalArgumentException("playerName cannot be empty.");
         }
+        System.out.println(playerName);
+        //result.setPlayerName(playerName);
 
-        result.setPlayerName(playerName);
-
+        QuestionList questionList = quizLogic.getRailcarQuestions();
+        String ques = questionList.toString();
+        System.out.println(questionList);
+        return ques;
     }
 }
