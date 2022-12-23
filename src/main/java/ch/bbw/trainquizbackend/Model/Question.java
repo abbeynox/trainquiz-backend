@@ -1,12 +1,10 @@
 package ch.bbw.trainquizbackend.Model;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-
-// Dynamisch
 public class Question {
     private int questionId;
 
     private String quizQuestion;
+    private String imageSource;
     private String answerA;
     private String answerB;
     private String answerC;
@@ -14,9 +12,10 @@ public class Question {
     private int selectedAnswer;
     private int correctAnswer;
 
-    public Question(int questionId, String quizQuestion, String answerA, String answerB, String answerC, String answerD, int selectedAnswer, int correctAnswer) {
+    public Question(int questionId, String quizQuestion, String imageSource, String answerA, String answerB, String answerC, String answerD, int selectedAnswer, int correctAnswer) {
         this.questionId = questionId;
         this.quizQuestion = quizQuestion;
+        this.imageSource = imageSource;
         this.answerA = answerA;
         this.answerB = answerB;
         this.answerC = answerC;
@@ -39,6 +38,14 @@ public class Question {
 
     public void setQuizQuestion(String quizQuestion) {
         this.quizQuestion = quizQuestion;
+    }
+
+    public String getImageSource() {
+        return imageSource;
+    }
+
+    public void setImageSource(String imageSource) {
+        this.imageSource = imageSource;
     }
 
     public String getAnswerA() {
